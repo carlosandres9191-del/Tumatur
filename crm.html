@@ -3,153 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tuma Tour | Panel interno</title>
-  <meta name="description" content="Panel interno para administrar precios, experiencias y reservas registradas desde la página principal de Tuma Tour." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <title>Tuma Tour | CRM interno</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-page="crm">
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-
-  <header class="topbar">
-    <div class="container inner">
-      <a class="brand" href="index.html" aria-label="Volver a la página principal de Tuma Tour">
-        <img src="assets/logo.jpg" alt="Logo Tuma Tour" class="brand-logo" />
-        <div>
-          Tuma Tour
-          <small>Panel interno / CRM básico</small>
-        </div>
-      </a>
-      <nav class="nav-links">
-        <a href="index.html">Ver página cliente</a>
-        <a href="#ventas">Reservas</a>
-        <a href="#planes">Planes</a>
+<body class="crm-body">
+  <header class="site-header glass">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand"><img src="logo.jpeg" alt="Logo Tuma Tour" class="brand-logo" /></a>
+      <nav class="nav">
+        <a href="index.html">Volver al sitio</a>
+        <a href="#acceso">Acceso</a>
+        <a href="#precios">Precios</a>
+        <a href="#usuarios">Usuarios</a>
+        <a href="#reservas">Reservas</a>
       </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Volver al sitio</a>
+      <a href="#acceso">Acceso</a>
+      <a href="#precios">Precios</a>
+      <a href="#usuarios">Usuarios</a>
+      <a href="#reservas">Reservas</a>
     </div>
   </header>
 
-  <main class="section-gap">
-    <section class="container">
-      <div class="section-head reveal rise">
-        <div>
-          <span class="eyebrow">Administración</span>
-          <h1>Panel interno para revisar reservas y ajustar precios.</h1>
-          <p>Esta página es la que recibe la información enviada desde la web del cliente y permite editar las experiencias publicadas.</p>
-        </div>
-      </div>
-      <div class="kpis reveal rise delay-1">
-        <div class="panel kpi-card"><span class="small">Total reservas</span><strong id="kpi-sales">0</strong></div>
-        <div class="panel kpi-card"><span class="small">Ingresos estimados</span><strong id="kpi-income">$0</strong></div>
-        <div class="panel kpi-card"><span class="small">Viajeros registrados</span><strong id="kpi-travelers">0</strong></div>
-        <div class="panel kpi-card"><span class="small">Última reserva</span><strong id="kpi-last">Sin datos</strong></div>
-      </div>
-    </section>
-
-    <section class="container section-gap-small" id="ventas">
-      <div class="panel reveal rise">
-        <div class="section-head space-between">
-          <div>
-            <span class="eyebrow">Reservas</span>
-            <h2>Solicitudes enviadas desde la página principal</h2>
-          </div>
-          <div class="inline-actions">
-            <input type="search" id="sales-search" placeholder="Buscar por cliente o experiencia" />
-            <button class="btn btn-secondary btn-sm" id="export-sales">Exportar CSV</button>
+  <main class="crm-main">
+    <section class="section crm-hero" id="acceso">
+      <div class="container crm-login-grid" id="loginView">
+        <div class="crm-login-box glow-card reveal">
+          <span class="section-tag">Acceso interno</span>
+          <h1>CRM de Tuma Tour</h1>
+          <p>
+            Este panel es interno. Aquí defines precios, manejas usuarios y revisas la información
+            que llega desde la página principal del cliente.
+          </p>
+          <div class="info-box">
+            <strong>Usuarios iniciales de prueba:</strong>
+            <p class="small">admin / admin123</p>
+            <p class="small">operador / operador123</p>
           </div>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Registro</th>
-                <th>Cliente</th>
-                <th>Teléfono</th>
-                <th>Experiencia</th>
-                <th>Fecha viaje</th>
-                <th>Viajeros</th>
-                <th>Total</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody id="sales-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="container split section-gap-small" id="planes">
-      <div class="panel reveal rise">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Editar experiencias</span>
-            <h2>Precios y datos visibles para el cliente</h2>
-            <p>Lo que cambies aquí se refleja en la primera página.</p>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Plan</th>
-                <th>Precio</th>
-                <th>Duración</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="package-admin-list"></tbody>
-          </table>
+        <div class="crm-login-box glow-card reveal delay-1">
+          <form id="loginForm" class="stack-form">
+            <label>Usuario<input type="text" id="loginUser" required placeholder="Ingresa tu usuario" /></label>
+            <label>Contraseña<input type="password" id="loginPass" required placeholder="Ingresa tu contraseña" /></label>
+            <button class="btn btn-primary" type="submit">Entrar al CRM</button>
+          </form>
         </div>
       </div>
 
-      <div class="panel reveal slide-right">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Formulario</span>
-            <h2>Crear o actualizar experiencia</h2>
+      <div class="hide" id="panelView">
+        <div class="container">
+          <div class="glow-card crm-panel reveal">
+            <div class="inline-actions" style="justify-content:space-between; align-items:center; width:100%;">
+              <div>
+                <span class="section-tag">Sesión activa</span>
+                <h2 style="margin:0;">Panel administrativo</h2>
+                <p class="muted" id="currentUser">Usuario</p>
+              </div>
+              <button class="btn btn-secondary" id="logoutBtn">Cerrar sesión</button>
+            </div>
           </div>
         </div>
-        <form id="package-form">
-          <input type="hidden" id="package-id" />
-          <label>Nombre del plan
-            <input type="text" id="package-name" required />
-          </label>
-          <label>Categoría
-            <input type="text" id="package-category" required />
-          </label>
-          <div class="form-grid">
-            <label>Precio
-              <input type="number" id="package-price" min="0" required />
-            </label>
-            <label>Duración
-              <input type="text" id="package-duration" required />
-            </label>
+
+        <section class="section" id="precios">
+          <div class="container crm-grid">
+            <div class="glow-card crm-panel reveal">
+              <h2>Configurar precios</h2>
+              <form id="priceForm" class="stack-form">
+                <label>Ruta del Milagro Eucarístico<input type="number" id="priceMilagro" min="0" /></label>
+                <label>Ruta de la Fe Colomboecuatoriana<input type="number" id="priceFe" min="0" /></label>
+                <label>Rutas Internacionales<input type="number" id="priceIntl" min="0" /></label>
+                <label>Artículos religiosos<input type="number" id="priceArticulos" min="0" /></label>
+                <button class="btn btn-primary" type="submit">Guardar precios</button>
+              </form>
+            </div>
+
+            <div class="glow-card crm-panel reveal delay-1">
+              <h2>Resumen rápido</h2>
+              <div class="summary-grid">
+                <div class="summary-card"><span>Total reservas</span><strong id="totalReservas">0</strong></div>
+                <div class="summary-card"><span>Ingresos estimados</span><strong id="totalIngresos">$0</strong></div>
+                <div class="summary-card"><span>Última reserva</span><strong id="ultimaReserva">Sin datos</strong></div>
+              </div>
+              <div class="crm-actions">
+                <button class="btn btn-secondary" id="exportBtn">Exportar CSV</button>
+                <button class="btn btn-danger" id="clearBtn">Borrar reservas</button>
+              </div>
+            </div>
           </div>
-          <label>Descripción corta
-            <textarea id="package-description" required></textarea>
-          </label>
-          <label>Incluye (una línea por item)
-            <textarea id="package-includes" required></textarea>
-          </label>
-          <label>Imagen
-            <select id="package-image">
-              <option value="assets/ruta-fe-2.jpg">Ruta de la Fe</option>
-              <option value="assets/milagro.jpg">Milagro Eucarístico</option>
-              <option value="assets/internacionales.jpg">Rutas internacionales</option>
-              <option value="assets/antioquia.jpg">Antioquia</option>
-            </select>
-          </label>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="submit">Guardar cambios</button>
-            <button class="btn btn-secondary" type="button" id="clear-package-form">Limpiar</button>
+        </section>
+
+        <section class="section dark-section" id="usuarios">
+          <div class="container users-grid">
+            <div class="glow-card crm-panel reveal">
+              <span class="section-tag">Usuarios y acceso</span>
+              <h2>Crear o editar usuario</h2>
+              <form id="userForm" class="stack-form">
+                <input type="hidden" id="editUserIndex" value="" />
+                <label>Usuario<input type="text" id="username" required /></label>
+                <label>Contraseña<input type="text" id="password" required /></label>
+                <label>Rol
+                  <select id="role">
+                    <option>Administrador</option>
+                    <option>Operador</option>
+                    <option>Ventas</option>
+                  </select>
+                </label>
+                <label>Estado
+                  <select id="active">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                  </select>
+                </label>
+                <div class="inline-actions">
+                  <button class="btn btn-primary" type="submit">Guardar usuario</button>
+                  <button class="btn btn-secondary" type="button" id="resetUserForm">Limpiar</button>
+                </div>
+              </form>
+            </div>
+            <div class="glow-card crm-panel reveal delay-1">
+              <span class="section-tag">Usuarios registrados</span>
+              <h2>Control de acceso</h2>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Usuario</th>
+                      <th>Rol</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="usersTableBody"></tbody>
+                </table>
+              </div>
+            </div>
           </div>
-        </form>
+        </section>
+
+        <section class="section" id="reservas">
+          <div class="container">
+            <div class="section-head reveal">
+              <span class="section-tag">Reservas recibidas</span>
+              <h2>Solicitudes desde la página principal</h2>
+            </div>
+            <div class="table-wrap glow-card reveal delay-1">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Plan</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Contacto</th>
+                    <th>Ciudad / Pago</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="bookingTableBody"></tbody>
+              </table>
+              <div id="emptyState" class="empty-state">Todavía no hay reservas registradas.</div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+  <script src="crm.js"></script>
 </body>
 </html>
