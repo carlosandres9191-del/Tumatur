@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuma Tour | Panel interno</title>
+  <meta name="description" content="Panel interno para administrar precios, experiencias y reservas registradas desde la página principal de Tuma Tour." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="crm">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="topbar">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Volver a la página principal de Tuma Tour">
+        <img src="assets/logo.jpg" alt="Logo Tuma Tour" class="brand-logo" />
+        <div>
+          Tuma Tour
+          <small>Panel interno / CRM básico</small>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Ver página cliente</a>
+        <a href="#ventas">Reservas</a>
+        <a href="#planes">Planes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section-gap">
+    <section class="container">
+      <div class="section-head reveal rise">
+        <div>
+          <span class="eyebrow">Administración</span>
+          <h1>Panel interno para revisar reservas y ajustar precios.</h1>
+          <p>Esta página es la que recibe la información enviada desde la web del cliente y permite editar las experiencias publicadas.</p>
+        </div>
+      </div>
+      <div class="kpis reveal rise delay-1">
+        <div class="panel kpi-card"><span class="small">Total reservas</span><strong id="kpi-sales">0</strong></div>
+        <div class="panel kpi-card"><span class="small">Ingresos estimados</span><strong id="kpi-income">$0</strong></div>
+        <div class="panel kpi-card"><span class="small">Viajeros registrados</span><strong id="kpi-travelers">0</strong></div>
+        <div class="panel kpi-card"><span class="small">Última reserva</span><strong id="kpi-last">Sin datos</strong></div>
+      </div>
+    </section>
+
+    <section class="container section-gap-small" id="ventas">
+      <div class="panel reveal rise">
+        <div class="section-head space-between">
+          <div>
+            <span class="eyebrow">Reservas</span>
+            <h2>Solicitudes enviadas desde la página principal</h2>
+          </div>
+          <div class="inline-actions">
+            <input type="search" id="sales-search" placeholder="Buscar por cliente o experiencia" />
+            <button class="btn btn-secondary btn-sm" id="export-sales">Exportar CSV</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Registro</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Experiencia</th>
+                <th>Fecha viaje</th>
+                <th>Viajeros</th>
+                <th>Total</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="sales-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="container split section-gap-small" id="planes">
+      <div class="panel reveal rise">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Editar experiencias</span>
+            <h2>Precios y datos visibles para el cliente</h2>
+            <p>Lo que cambies aquí se refleja en la primera página.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Precio</th>
+                <th>Duración</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="package-admin-list"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel reveal slide-right">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Formulario</span>
+            <h2>Crear o actualizar experiencia</h2>
+          </div>
+        </div>
+        <form id="package-form">
+          <input type="hidden" id="package-id" />
+          <label>Nombre del plan
+            <input type="text" id="package-name" required />
+          </label>
+          <label>Categoría
+            <input type="text" id="package-category" required />
+          </label>
+          <div class="form-grid">
+            <label>Precio
+              <input type="number" id="package-price" min="0" required />
+            </label>
+            <label>Duración
+              <input type="text" id="package-duration" required />
+            </label>
+          </div>
+          <label>Descripción corta
+            <textarea id="package-description" required></textarea>
+          </label>
+          <label>Incluye (una línea por item)
+            <textarea id="package-includes" required></textarea>
+          </label>
+          <label>Imagen
+            <select id="package-image">
+              <option value="assets/ruta-fe-2.jpg">Ruta de la Fe</option>
+              <option value="assets/milagro.jpg">Milagro Eucarístico</option>
+              <option value="assets/internacionales.jpg">Rutas internacionales</option>
+              <option value="assets/antioquia.jpg">Antioquia</option>
+            </select>
+          </label>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+            <button class="btn btn-secondary" type="button" id="clear-package-form">Limpiar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
