@@ -1,140 +1,253 @@
 
-const STORAGE_KEYS = {
-  bookings: 'tumatour_bookings',
-  prices: 'tumatour_prices'
-};
+const BOOKINGS_KEY = 'tumatour_bookings_v1';
+const TESTIMONIALS_KEY = 'tumatour_public_testimonials_v1';
+const PENDING_TOUR_KEY = 'tumatour_pending_tour_v1';
 
-const defaultPrices = {
-  'Ruta del Milagro Eucarístico': 180000,
-  'Ruta de la Fe Colomboecuatoriana': 1850000,
-  'Rutas Internacionales': 350000,
-  'Artículos religiosos': 35000
-};
-
-function getPrices() {
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.prices) || 'null');
-  return saved ? { ...defaultPrices, ...saved } : defaultPrices;
+function getItems(key) {
+  try { return JSON.parse(localStorage.getItem(key) || '[]'); }
+  catch (e) { return []; }
 }
 
-function saveBooking(booking) {
-  const current = JSON.parse(localStorage.getItem(STORAGE_KEYS.bookings) || '[]');
-  current.unshift(booking);
-  localStorage.setItem(STORAGE_KEYS.bookings, JSON.stringify(current));
+function setItems(key, items) {
+  localStorage.setItem(key, JSON.stringify(items));
 }
 
-function formatCOP(value) {
-  return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value || 0);
+function esc(str) {
+  return String(str || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 }
 
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3200);
+// Carrusel principal
+const heroTrack = document.getElementById('heroTrack');
+const heroPrev = document.getElementById('heroPrev');
+const heroNext = document.getElementById('heroNext');
+const heroDots = document.getElementById('heroDots');
+const heroSlides = heroTrack ? Array.from(heroTrack.children) : [];
+let heroIndex = 0;
+let autoTimer = null;
+let startX = 0;
+let moveX = 0;
+
+function renderDots() {
+  if (!heroDots || !heroSlides.length) return;
+  heroDots.innerHTML = '';
+  heroSlides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i === heroIndex ? ' active' : '');
+    b.type = 'button';
+    b.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
+    b.addEventListener('click', () => goSlide(i, true));
+    heroDots.appendChild(b);
+  });
 }
 
-function animateOnScroll() {
-  if (!('IntersectionObserver' in window)) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: .16 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function updateCarousel() {
+  if (!heroTrack) return;
+  heroTrack.style.transform = `translateX(-${heroIndex * 100}%)`;
+  Array.from(heroDots?.children || []).forEach((d, i) => {
+    d.classList.toggle('active', i === heroIndex);
+  });
 }
 
-function setupMenu() {
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  if (!menuBtn || !mobileNav) return;
-  menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
-  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileNav.classList.remove('open')));
+function goSlide(i, restart = false) {
+  heroIndex = (i + heroSlides.length) % heroSlides.length;
+  updateCarousel();
+  if (restart) restartAuto();
 }
 
-function setupCalendarMinDate() {
-  const fechaInput = document.getElementById('fechaInput');
-  if (!fechaInput) return;
-  const today = new Date();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
-  fechaInput.min = `${today.getFullYear()}-${month}-${day}`;
+function nextSlide(restart = false) {
+  goSlide(heroIndex + 1, restart);
 }
 
-function setupPricePreview() {
-  const tourSelect = document.getElementById('tourSelect');
-  const personasInput = document.querySelector('input[name="personas"]');
-  const pricePreview = document.getElementById('pricePreview');
-  const selectButtons = document.querySelectorAll('.select-tour');
-  const prices = getPrices();
+function prevSlide(restart = false) {
+  goSlide(heroIndex - 1, restart);
+}
 
-  function updatePreview() {
-    if (!tourSelect || !pricePreview) return;
-    const tour = tourSelect.value;
-    const people = Number(personasInput?.value || 1);
-    if (!tour) {
-      pricePreview.innerHTML = 'Valor estimado: <strong>Selecciona un plan</strong>';
+function stopAuto() {
+  if (autoTimer) {
+    clearInterval(autoTimer);
+    autoTimer = null;
+  }
+}
+
+function startAuto() {
+  if (!heroSlides.length) return;
+  stopAuto();
+  autoTimer = setInterval(() => {
+    heroIndex = (heroIndex + 1) % heroSlides.length;
+    updateCarousel();
+  }, 2000);
+}
+
+function restartAuto() {
+  startAuto();
+}
+
+if (heroTrack && heroSlides.length) {
+  renderDots();
+  updateCarousel();
+  startAuto();
+
+  heroPrev?.addEventListener('click', () => prevSlide(true));
+  heroNext?.addEventListener('click', () => nextSlide(true));
+
+  heroTrack.addEventListener('mouseenter', stopAuto);
+  heroTrack.addEventListener('mouseleave', startAuto);
+
+  heroTrack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    moveX = startX;
+    stopAuto();
+  }, { passive: true });
+
+  heroTrack.addEventListener('touchmove', (e) => {
+    moveX = e.touches[0].clientX;
+  }, { passive: true });
+
+  heroTrack.addEventListener('touchend', () => {
+    const diff = moveX - startX;
+    if (Math.abs(diff) > 45) {
+      if (diff < 0) nextSlide(true);
+      else prevSlide(true);
+    } else {
+      startAuto();
+    }
+  }, { passive: true });
+}
+
+// Reservas desde botones y planes
+document.querySelectorAll('[data-tour]').forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const tour = btn.getAttribute('data-tour');
+    if (tour) localStorage.setItem(PENDING_TOUR_KEY, tour);
+
+    const href = btn.getAttribute('href') || '';
+    const isReservePage = window.location.pathname.endsWith('reservar.html');
+
+    if (!isReservePage && (href.includes('reservar.html') || btn.classList.contains('tumaco-plan-link'))) {
+      return; // deja navegar normal
+    }
+
+    if (!isReservePage && (btn.tagName === 'BUTTON' || !href)) {
+      e.preventDefault();
+      window.location.href = 'reservar.html';
       return;
     }
-    const unit = prices[tour] || 0;
-    pricePreview.innerHTML = `Valor estimado: <strong>${formatCOP(unit)}</strong> · Total aprox.: <strong>${formatCOP(unit * people)}</strong>`;
-  }
 
-  tourSelect?.addEventListener('change', updatePreview);
-  personasInput?.addEventListener('input', updatePreview);
-  selectButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('[data-tour]');
-      const tour = card?.dataset.tour;
-      if (tour && tourSelect) {
-        tourSelect.value = tour;
-        updatePreview();
-        document.getElementById('reserva')?.scrollIntoView({ behavior: 'smooth' });
+    const select = document.getElementById('tour');
+    if (select && tour) {
+      const existing = Array.from(select.options).some(
+        (opt) => opt.value === tour || opt.textContent === tour
+      );
+      if (!existing) {
+        const opt = document.createElement('option');
+        opt.value = tour;
+        opt.textContent = tour;
+        select.appendChild(opt);
       }
-    });
+      select.value = tour;
+    }
   });
+});
 
-  updatePreview();
-}
+(function applyPendingTour() {
+  const select = document.getElementById('tour');
+  const pending = localStorage.getItem(PENDING_TOUR_KEY);
+  if (!select || !pending) return;
 
-function setupBookingForm() {
-  const form = document.getElementById('bookingForm');
-  if (!form) return;
+  const existing = Array.from(select.options).some(
+    (opt) => opt.value === pending || opt.textContent === pending
+  );
+  if (!existing) {
+    const opt = document.createElement('option');
+    opt.value = pending;
+    opt.textContent = pending;
+    select.appendChild(opt);
+  }
+  select.value = pending;
+  localStorage.removeItem(PENDING_TOUR_KEY);
+})();
 
-  form.addEventListener('submit', (e) => {
+// Formulario de reserva
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = new FormData(form);
-    const prices = getPrices();
-    const tour = data.get('tour');
-    const personas = Number(data.get('personas') || 1);
-    const valorUnitario = prices[tour] || 0;
-
     const booking = {
-      id: Date.now(),
-      cliente: data.get('cliente'),
-      documento: data.get('documento'),
-      telefono: data.get('telefono'),
-      email: data.get('email'),
-      tour,
-      fecha: data.get('fecha'),
-      personas,
-      ciudad: data.get('ciudad'),
-      pago: data.get('pago'),
-      mensaje: data.get('mensaje'),
-      valorUnitario,
-      total: valorUnitario * personas,
-      creado: new Date().toLocaleString('es-CO')
+      id: 'b_' + Date.now(),
+      name: document.getElementById('name')?.value?.trim(),
+      phone: document.getElementById('phone')?.value?.trim(),
+      tour: document.getElementById('tour')?.value?.trim(),
+      date: document.getElementById('date')?.value?.trim(),
+      createdAt: Date.now()
     };
 
-    saveBooking(booking);
-    form.reset();
-    setupPricePreview();
-    showToast('Reserva enviada correctamente. Ya quedó registrada en el CRM interno.');
+    if (!booking.name || !booking.phone || !booking.tour || !booking.date) return;
+
+    const items = getItems(BOOKINGS_KEY);
+    items.push(booking);
+    setItems(BOOKINGS_KEY, items);
+    bookingForm.reset();
+    alert('Reserva enviada correctamente');
   });
 }
 
-animateOnScroll();
-setupMenu();
-setupCalendarMinDate();
-setupPricePreview();
-setupBookingForm();
+// Comentarios públicos
+function renderPublicTestimonials() {
+  const list = document.getElementById('publicTestimonialsList');
+  if (!list) return;
+
+  const items = getItems(TESTIMONIALS_KEY).sort(
+    (a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0)
+  );
+
+  if (!items.length) {
+    list.innerHTML = '<div class="empty-box">Todavía no hay comentarios publicados. Déjanos tu comentario.</div>';
+    return;
+  }
+
+  list.innerHTML = items.map((item) => `
+    <article class="testimonial-item">
+      <div class="testimonial-top">
+        <div class="avatar">${esc((item.name || 'T').slice(0, 1).toUpperCase())}</div>
+        <div>
+          <strong>${esc(item.name || 'Visitante')}</strong><br>
+          <span class="muted">${esc(item.city || 'Visitante')}</span>
+        </div>
+      </div>
+      <p>${esc(item.message || '')}</p>
+    </article>
+  `).join('');
+}
+
+const publicTestimonialForm = document.getElementById('publicTestimonialForm');
+if (publicTestimonialForm) {
+  publicTestimonialForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('testimonialName')?.value?.trim();
+    const city = document.getElementById('testimonialCity')?.value?.trim();
+    const message = document.getElementById('testimonialMessage')?.value?.trim();
+
+    if (!name || !message) return;
+
+    const items = getItems(TESTIMONIALS_KEY);
+    items.push({
+      id: 't_' + Date.now(),
+      name,
+      city,
+      message,
+      createdAt: Date.now()
+    });
+
+    setItems(TESTIMONIALS_KEY, items);
+    publicTestimonialForm.reset();
+    renderPublicTestimonials();
+    alert('Tu comentario fue publicado');
+  });
+}
+
+renderPublicTestimonials();

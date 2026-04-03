@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar | Tuma Tour</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="Logo Tuma Tour" class="brand-logo">
+      <span>Tuma Tour</span>
+    </a>
+    <a href="index.html" class="btn btn-outline">Regresar al inicio</a>
+  </div>
+</header>
+
+<main class="reserve-page-main">
+  <section class="section">
+    <div class="container reserve-page-layout">
+      <div class="reserve-page-copy panel">
+        <span class="tag">Reserva tu experiencia</span>
+        <h1>Nos encanta hacer tu sueño realidad</h1>
+        <p>
+          Déjanos tus datos y selecciona la experiencia que quieres vivir. 
+          Te acompañaremos para organizar tu reserva de forma clara, rápida y confiable.
+        </p>
+        <ul class="route-list">
+          <li>Atención cercana y organizada.</li>
+          <li>Experiencias personalizadas.</li>
+          <li>Acompañamiento durante el proceso.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <span class="tag">Formulario</span>
+        <form id="bookingForm" class="booking-form reserve-page-form">
+          <input type="text" id="name" placeholder="Nombre completo" required>
+          <input type="tel" id="phone" placeholder="Teléfono o WhatsApp" required>
+          <select id="tour" required>
+            <option value="">Selecciona una experiencia</option>
+            <option>Ruta del Milagro Eucarístico</option>
+            <option>Ruta de la Fe</option>
+            <option>Andes y Pacífico sin fronteras</option>
+            <option>Conoce qué hacer en Tumaco</option>
+          </select>
+          <input type="date" id="date" required>
+          <button type="submit" class="btn btn-gold">Enviar reserva</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

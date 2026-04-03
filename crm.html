@@ -1,179 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tuma Tour | CRM interno</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Tuma Tour</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="crm-body">
-  <header class="site-header glass">
-    <div class="container nav-wrap">
-      <a href="index.html" class="brand"><img src="logo.jpeg" alt="Logo Tuma Tour" class="brand-logo" /></a>
-      <nav class="nav">
-        <a href="index.html">Volver al sitio</a>
-        <a href="#acceso">Acceso</a>
-        <a href="#precios">Precios</a>
-        <a href="#usuarios">Usuarios</a>
-        <a href="#reservas">Reservas</a>
-      </nav>
-      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+<body>
+  <main class="crm-login-wrap" id="loginWrap">
+    <div class="crm-login-card">
+      <h1>CRM Tuma Tour</h1>
+      <p>Acceso administrativo</p>
+      <form id="loginForm" class="booking-form">
+        <input type="text" id="crmUser" placeholder="Usuario" required>
+        <input type="password" id="crmPass" placeholder="Clave" required>
+        <button class="btn btn-gold" type="submit">Ingresar</button>
+      </form>
+      <small>Usuario: admin | Clave: admin123</small>
     </div>
-    <div class="mobile-nav" id="mobileNav">
-      <a href="index.html">Volver al sitio</a>
-      <a href="#acceso">Acceso</a>
-      <a href="#precios">Precios</a>
-      <a href="#usuarios">Usuarios</a>
-      <a href="#reservas">Reservas</a>
-    </div>
-  </header>
-
-  <main class="crm-main">
-    <section class="section crm-hero" id="acceso">
-      <div class="container crm-login-grid" id="loginView">
-        <div class="crm-login-box glow-card reveal">
-          <span class="section-tag">Acceso interno</span>
-          <h1>CRM de Tuma Tour</h1>
-          <p>
-            Este panel es interno. Aquí defines precios, manejas usuarios y revisas la información
-            que llega desde la página principal del cliente.
-          </p>
-          <div class="info-box">
-            <strong>Usuarios iniciales de prueba:</strong>
-            <p class="small">admin / admin123</p>
-            <p class="small">operador / operador123</p>
-          </div>
-        </div>
-        <div class="crm-login-box glow-card reveal delay-1">
-          <form id="loginForm" class="stack-form">
-            <label>Usuario<input type="text" id="loginUser" required placeholder="Ingresa tu usuario" /></label>
-            <label>Contraseña<input type="password" id="loginPass" required placeholder="Ingresa tu contraseña" /></label>
-            <button class="btn btn-primary" type="submit">Entrar al CRM</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="hide" id="panelView">
-        <div class="container">
-          <div class="glow-card crm-panel reveal">
-            <div class="inline-actions" style="justify-content:space-between; align-items:center; width:100%;">
-              <div>
-                <span class="section-tag">Sesión activa</span>
-                <h2 style="margin:0;">Panel administrativo</h2>
-                <p class="muted" id="currentUser">Usuario</p>
-              </div>
-              <button class="btn btn-secondary" id="logoutBtn">Cerrar sesión</button>
-            </div>
-          </div>
-        </div>
-
-        <section class="section" id="precios">
-          <div class="container crm-grid">
-            <div class="glow-card crm-panel reveal">
-              <h2>Configurar precios</h2>
-              <form id="priceForm" class="stack-form">
-                <label>Ruta del Milagro Eucarístico<input type="number" id="priceMilagro" min="0" /></label>
-                <label>Ruta de la Fe Colomboecuatoriana<input type="number" id="priceFe" min="0" /></label>
-                <label>Rutas Internacionales<input type="number" id="priceIntl" min="0" /></label>
-                <label>Artículos religiosos<input type="number" id="priceArticulos" min="0" /></label>
-                <button class="btn btn-primary" type="submit">Guardar precios</button>
-              </form>
-            </div>
-
-            <div class="glow-card crm-panel reveal delay-1">
-              <h2>Resumen rápido</h2>
-              <div class="summary-grid">
-                <div class="summary-card"><span>Total reservas</span><strong id="totalReservas">0</strong></div>
-                <div class="summary-card"><span>Ingresos estimados</span><strong id="totalIngresos">$0</strong></div>
-                <div class="summary-card"><span>Última reserva</span><strong id="ultimaReserva">Sin datos</strong></div>
-              </div>
-              <div class="crm-actions">
-                <button class="btn btn-secondary" id="exportBtn">Exportar CSV</button>
-                <button class="btn btn-danger" id="clearBtn">Borrar reservas</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section dark-section" id="usuarios">
-          <div class="container users-grid">
-            <div class="glow-card crm-panel reveal">
-              <span class="section-tag">Usuarios y acceso</span>
-              <h2>Crear o editar usuario</h2>
-              <form id="userForm" class="stack-form">
-                <input type="hidden" id="editUserIndex" value="" />
-                <label>Usuario<input type="text" id="username" required /></label>
-                <label>Contraseña<input type="text" id="password" required /></label>
-                <label>Rol
-                  <select id="role">
-                    <option>Administrador</option>
-                    <option>Operador</option>
-                    <option>Ventas</option>
-                  </select>
-                </label>
-                <label>Estado
-                  <select id="active">
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                  </select>
-                </label>
-                <div class="inline-actions">
-                  <button class="btn btn-primary" type="submit">Guardar usuario</button>
-                  <button class="btn btn-secondary" type="button" id="resetUserForm">Limpiar</button>
-                </div>
-              </form>
-            </div>
-            <div class="glow-card crm-panel reveal delay-1">
-              <span class="section-tag">Usuarios registrados</span>
-              <h2>Control de acceso</h2>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Usuario</th>
-                      <th>Rol</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody id="usersTableBody"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="reservas">
-          <div class="container">
-            <div class="section-head reveal">
-              <span class="section-tag">Reservas recibidas</span>
-              <h2>Solicitudes desde la página principal</h2>
-            </div>
-            <div class="table-wrap glow-card reveal delay-1">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Cliente</th>
-                    <th>Plan</th>
-                    <th>Fecha</th>
-                    <th>Cantidad</th>
-                    <th>Contacto</th>
-                    <th>Ciudad / Pago</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody id="bookingTableBody"></tbody>
-              </table>
-              <div id="emptyState" class="empty-state">Todavía no hay reservas registradas.</div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
   </main>
 
-  <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+  <div id="crmApp" class="hidden">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="index.html" class="brand">
+          <img src="logo.jpeg" alt="Logo Tuma Tour" class="brand-logo">
+          <span>CRM Tuma Tour</span>
+        </a>
+        <button id="logoutBtn" class="btn btn-outline">Salir</button>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container crm-grid">
+        <section class="panel">
+          <span class="tag">Reservas</span>
+          <div id="bookingsList" class="admin-list"></div>
+        </section>
+        <section class="panel">
+          <span class="tag">Comentarios</span>
+          <div id="crmTestimonialsList" class="admin-list"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
   <script src="crm.js"></script>
 </body>
 </html>

@@ -1,308 +1,225 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tuma Tour | Turismo en Tumaco y rutas internacionales</title>
-  <meta name="description" content="Explora Tumaco con Tuma Tour. Reserva experiencias auténticas, turismo religioso, rutas internacionales y planes personalizados." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuma Tour | Experiencias auténticas en Tumaco</title>
+  <meta name="description" content="Tuma Tour, agencia local de Tumaco. Rutas auténticas, turismo religioso, experiencias personalizadas y reservas fáciles.">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header glass">
-    <div class="container nav-wrap">
-      <a href="#inicio" class="brand">
-        <img src="logo.jpeg" alt="Logo Tuma Tour" class="brand-logo" />
-      </a>
-      <nav class="nav">
-        <a href="#experiencias">Experiencias</a>
-        <a href="#destinos">Destinos</a>
-        <a href="#galeria">Galería</a>
-        <a href="#reserva">Reservar</a>
-        <a href="#contacto">Contacto</a>
-        <a href="crm.html" class="nav-admin">Acceso CRM</a>
-      </nav>
-      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
-    </div>
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#experiencias">Experiencias</a>
-      <a href="#destinos">Destinos</a>
-      <a href="#galeria">Galería</a>
-      <a href="#reserva">Reservar</a>
-      <a href="#contacto">Contacto</a>
-      <a href="crm.html">Acceso CRM</a>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <img src="logo.jpeg" alt="Logo Tuma Tour" class="brand-logo">
+      <span>Tuma Tour</span>
+    </a>
+    <nav class="menu">
+      <a href="#planes">Planes</a>
+      <a href="#seguridad">Seguridad</a>
+      <a href="reservar.html">Reserva</a>
+      <a href="#testimonios-publicos">Comentarios</a>
+      <a href="crm.html" class="btn btn-outline">CRM</a>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" id="inicio">
-  <div class="hero-overlay"></div>
-  <div class="container hero-grid">
-    <div class="hero-copy reveal">
-      <span class="eyebrow">Tumaco es turismo</span>
-      <h1>Descubre Tumaco con una vista inolvidable</h1>
-      <p>
-        Reserva experiencias auténticas en el Pacífico colombiano con una página pensada para el cliente:
-        información clara, compra fácil y fecha seleccionable desde calendario.
-      </p>
+<main>
+  <section class="hero-shell">
+    <div class="container-wide hero-carousel">
+      <button class="carousel-btn prev" id="heroPrev" aria-label="Anterior">‹</button>
+      <div class="hero-stage">
+        <div class="hero-track" id="heroTrack">
+          <article class="hero-slide"><div class="hero-bg" style="background-image:url('carousel1.jpeg')"></div><div class="hero-image-wrap"><img src="carousel1.jpeg" alt="Paisaje de Tumaco 1" class="hero-main-image"></div></article>
+<article class="hero-slide"><div class="hero-bg" style="background-image:url('carousel2.jpeg')"></div><div class="hero-image-wrap"><img src="carousel2.jpeg" alt="Paisaje de Tumaco 2" class="hero-main-image"></div></article>
+<article class="hero-slide"><div class="hero-bg" style="background-image:url('carousel3.jpeg')"></div><div class="hero-image-wrap"><img src="carousel3.jpeg" alt="Paisaje de Tumaco 3" class="hero-main-image"></div></article>
+<article class="hero-slide"><div class="hero-bg" style="background-image:url('carousel4.jpeg')"></div><div class="hero-image-wrap"><img src="carousel4.jpeg" alt="Paisaje de Tumaco 4" class="hero-main-image"></div></article>
+<article class="hero-slide"><div class="hero-bg" style="background-image:url('carousel5.jpeg')"></div><div class="hero-image-wrap"><img src="carousel5.jpeg" alt="Paisaje de Tumaco 5" class="hero-main-image"></div></article>
+<article class="hero-slide"><div class="hero-bg" style="background-image:url('carousel6.jpeg')"></div><div class="hero-image-wrap"><img src="carousel6.jpeg" alt="Paisaje de Tumaco 6" class="hero-main-image"></div></article>
+          <article class="hero-slide final-slide">
+            <div class="hero-bg" style="background-image:url('tumaco.jpg')"></div>
+            <div class="hero-image-wrap">
+              <img src="tumaco.jpg" alt="Conoce Tumaco" class="hero-main-image">
+            </div>
+            <div class="final-overlay">
+              <span class="tag">Agencia local de Tumaco</span>
+              <h1>Conoce Tumaco con una experiencia auténtica y organizada</h1>
+              <p>Información clara, reserva fácil y acompañamiento permanente para vivir el Pacífico con seguridad.</p>
+              <div class="hero-actions">
+                <a href="#planes" class="btn btn-gold">Ver destinos</a>
+                <a href="#testimonios-publicos" class="btn btn-outline-light">Déjanos tu comentario</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <button class="carousel-btn next" id="heroNext" aria-label="Siguiente">›</button>
     </div>
-    <div class="hero-floating-actions reveal delay-1">
-      <a class="btn btn-primary" href="#reserva">Comprar y reservar</a>
-      <a class="btn btn-secondary" href="portafolio_tuma_tour.pdf" target="_blank" rel="noopener">Ver portafolio</a>
+    <div class="dots" id="heroDots"></div>
+  </section>
+
+  <section class="section" id="planes">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Destinos destacados</span>
+        <h2>Rutas pensadas para enamorarte del destino</h2>
+        <p>Cada imagen y cada título abre su página individual con botón de regreso al inicio.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <a href="route-milagro.html" class="card-image"><img src="ruta_milagro.jpeg" alt="Ruta del Milagro Eucarístico"></a>
+          <div class="card-body">
+            <span class="mini-tag">Turismo religioso</span>
+            <h3><a href="route-milagro.html">Ruta del Milagro Eucarístico</a></h3>
+            <p>Una experiencia espiritual y cultural por lugares emblemáticos de Tumaco.</p>
+            <div class="card-actions">
+              <a href="route-milagro.html" class="btn btn-outline">Ver ruta</a>
+              <a href="reservar.html" class="btn btn-gold" data-tour="Ruta del Milagro Eucarístico">Reservar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a href="route-fe.html" class="card-image"><img src="ruta_fe_collage.jpeg" alt="Ruta de la Fe"></a>
+          <div class="card-body">
+            <span class="mini-tag">Ruta internacional</span>
+            <h3><a href="route-fe.html">Ruta de la Fe</a></h3>
+            <p>Una travesía que conecta espiritualidad, tradición y paisajes inolvidables.</p>
+            <div class="card-actions">
+              <a href="route-fe.html" class="btn btn-outline">Ver ruta</a>
+              <a href="reservar.html" class="btn btn-gold" data-tour="Ruta de la Fe">Reservar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a href="route-internacionales.html" class="card-image"><img src="tumaco_esmeraldas.jpeg" alt="Andes y Pacífico sin fronteras"></a>
+          <div class="card-body">
+            <span class="mini-tag">Sin fronteras</span>
+            <h3><a href="route-internacionales.html">Andes y Pacífico sin fronteras</a></h3>
+            <p>Rutas flexibles entre Tumaco, Pasto, Ipiales, Ibarra, Tulcán y más.</p>
+            <div class="card-actions">
+              <a href="route-internacionales.html" class="btn btn-outline">Ver ruta</a>
+              <a href="reservar.html" class="btn btn-gold" data-tour="Andes y Pacífico sin fronteras">Reservar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <a href="route-tumaco.html" class="card-image"><img src="tumaco.jpg" alt="Conoce qué hacer en Tumaco"></a>
+          <div class="card-body">
+            <span class="mini-tag">Ruta local</span>
+            <h3><a href="route-tumaco.html">Conoce qué hacer en Tumaco</a></h3>
+            <p>Playa, cultura, gastronomía y acompañamiento local en una experiencia organizada.</p>
+            <div class="card-actions">
+              <a href="route-tumaco.html" class="btn btn-outline">Ver ruta</a>
+              <a href="reservar.html" class="btn btn-gold" data-tour="Conoce qué hacer en Tumaco">Reservar</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wide-visual">
+    <div class="visual-grid">
+      <div class="visual-item"><img src="carousel2.jpeg" alt="Atardecer en Tumaco"></div>
+      <div class="visual-item"><img src="carousel4.jpeg" alt="Mar en Tumaco"></div>
+      <div class="visual-item"><img src="tumaco.jpg" alt="Paisaje principal de Tumaco"></div>
+    </div>
+  </section>
+
+  <section class="section" id="seguridad">
+    <div class="container trust-box">
+      <div>
+        <span class="tag">Viaja con seguridad</span>
+        <h2>Profesionales, legales y locales</h2>
+      </div>
+      <div class="trust-points">
+        <div class="trust-item"><strong>RNT 219341</strong><span>Agencia formalmente registrada.</span></div>
+        <div class="trust-item"><strong>Seguro de viaje</strong><span>Mayor tranquilidad en la experiencia.</span></div>
+        <div class="trust-item"><strong>Acompañamiento permanente</strong><span>Atención durante todo el recorrido.</span></div>
+        <div class="trust-item"><strong>Agencia local</strong><span>Conocimiento real del territorio.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reserva-antiguo">
+    <div class="container reserve-box">
+      <div>
+        <span class="tag">Reserva</span>
+        <h2>Haz tu reserva</h2>
+        <p>Selecciona tu ruta, la fecha en calendario y déjanos tus datos.</p>
+      </div>
+      <form id="bookingForm" class="booking-form">
+        <input type="text" id="name" placeholder="Nombre completo" required>
+        <input type="tel" id="phone" placeholder="Teléfono" required>
+        <select id="tour" required>
+          <option value="">Selecciona una ruta</option>
+          <option>Ruta del Milagro Eucarístico</option>
+          <option>Ruta de la Fe</option>
+          <option>Andes y Pacífico sin fronteras</option>
+          <option>Conoce qué hacer en Tumaco</option>
+        </select>
+        <input type="date" id="date" required>
+        <button type="submit" class="btn btn-gold">Enviar reserva</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="testimonios-publicos">
+    <div class="container two-cols">
+      <div>
+        <span class="tag">Déjanos tu comentario</span>
+        <h2>Comparte tu experiencia</h2>
+        <form id="publicTestimonialForm" class="testimonial-form">
+          <input type="text" id="testimonialName" placeholder="Tu nombre" required>
+          <input type="text" id="testimonialCity" placeholder="Ciudad (opcional)">
+          <textarea id="testimonialMessage" placeholder="Cuéntanos cómo fue tu experiencia" rows="5" required></textarea>
+          <button type="submit" class="btn btn-gold">Publicar comentario</button>
+        </form>
+      </div>
+      <div class="panel">
+        <span class="tag">Comentarios publicados</span>
+        <div id="publicTestimonialsList" class="testimonials-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Preguntas frecuentes</span>
+        <h2>Información que ayuda al cliente a decidir</h2>
+      </div>
+      <div class="faq">
+        <details><summary>¿Qué llevar?</summary><p>Ropa fresca, protector solar, gorra, hidratación y disposición para disfrutar.</p></details>
+        <details><summary>¿Cuál es la mejor época para ir?</summary><p>Tumaco se puede disfrutar en diferentes temporadas. La experiencia se ajusta según clima, marea y tipo de ruta.</p></details>
+        <details><summary>¿Cómo se reserva?</summary><p>Desde esta página puedes dejar tu reserva y luego continuamos la confirmación por atención directa.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>Tuma Tour</strong>
+      <p>Agencia de viajes y turismo receptiva con base en Tumaco, Nariño. RNT 219341.</p>
+    </div>
+    <div>
+      <strong>Compromiso legal</strong>
+      <p>En desarrollo de lo dispuesto en la Ley 679 de 2001 y la Ley 1336 de 2009, Tuma Tour rechaza la explotación sexual comercial de niños, niñas y adolescentes.</p>
     </div>
   </div>
-</section>
+</footer>
 
-    <section class="section about">
-      <div class="container two-col">
-        <div class="reveal">
-          <span class="section-tag">¿Quiénes somos?</span>
-          <h2>Tuma Tour</h2>
-          <p>
-            Agencia de viajes y turismo receptiva con base en Tumaco, Nariño, enfocada en experiencias seguras,
-            organizadas y profundamente auténticas.
-          </p>
-          <p>
-            Diseñamos itinerarios personalizados según el tiempo, intereses y perfil de cada visitante, integrando
-            turismo religioso, naturaleza, bienestar y rutas sin fronteras.
-          </p>
-        </div>
-        <div class="stats reveal delay-1">
-          <div class="stat-card glow-card"><strong>RNT</strong><span>219341</span></div>
-          <div class="stat-card glow-card"><strong>Base</strong><span>Tumaco, Nariño</span></div>
-          <div class="stat-card glow-card"><strong>Especialidad</strong><span>Turismo receptivo personalizado</span></div>
-          <div class="stat-card glow-card"><strong>Enfoque</strong><span>Seguridad, organización y acompañamiento</span></div>
-        </div>
-      </div>
-    </section>
+<a class="whatsapp-float" href="https://wa.me/573021002442" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp">
+  <span class="whatsapp-icon">✆</span>
+  <span class="whatsapp-label">WhatsApp</span>
+</a>
 
-    <section class="section dark-section" id="experiencias">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-tag">Experiencias destacadas</span>
-          <h2>Planes destacados</h2>
-        </div>
-        <div class="cards-grid">
-          <article class="tour-card reveal" data-tour="Ruta del Milagro Eucarístico">
-            <img src="ruta_milagro.jpeg" alt="Ruta del Milagro Eucarístico" />
-            <div class="tour-body">
-              <h3>Ruta del Milagro Eucarístico</h3>
-              <p>Recorrido espiritual y cultural por Tumaco, con acompañamiento, guía y experiencia auténtica.</p>
-              <div class="tour-meta"><span>Turismo religioso</span><strong>$180.000 COP</strong></div>
-              <button class="btn btn-primary select-tour">Elegir plan</button>
-            </div>
-          </article>
-
-          <article class="tour-card reveal delay-1" data-tour="Ruta de la Fe Colomboecuatoriana">
-            <img src="rutas_internacionales.jpeg" alt="Ruta de la Fe" />
-            <div class="tour-body">
-              <h3>Ruta de la Fe Colomboecuatoriana</h3>
-              <p>Tumaco, Ibarra, Tulcán, Ipiales y Pasto en una experiencia de 5 días y 4 noches.</p>
-              <div class="tour-meta"><span>5 días / 4 noches</span><strong>$1.850.000 COP</strong></div>
-              <button class="btn btn-primary select-tour">Elegir plan</button>
-            </div>
-          </article>
-
-          <article class="tour-card reveal delay-2" data-tour="Rutas Internacionales">
-            <img src="ruta_fe_collage.jpeg" alt="Rutas internacionales" />
-            <div class="tour-body">
-              <h3>Rutas Internacionales</h3>
-              <p>Conecta Tumaco con Ecuador y el sur de Colombia en rutas cómodas, seguras y directas.</p>
-              <div class="tour-meta"><span>Ida y regreso</span><strong>Desde $350.000 COP</strong></div>
-              <button class="btn btn-primary select-tour">Elegir plan</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="destinos">
-      <div class="container split-gallery">
-        <div class="feature-panel reveal">
-          <img src="tumaco_esmeraldas.jpeg" alt="Tumaco y provincia de Esmeraldas" />
-        </div>
-        <div class="feature-copy reveal delay-1">
-          <span class="section-tag">Integración regional</span>
-          <h2>Tumaco y provincia de Esmeraldas</h2>
-          <p>
-            Una propuesta de conexión comercial, turística y cultural que fortalece la integración del Pacífico
-            nariñense con Ecuador.
-          </p>
-          <ul class="check-list">
-            <li>Intercambio cultural y turístico</li>
-            <li>Conexiones terrestres y regionales</li>
-            <li>Planes desde Tumaco</li>
-            <li>Atención y reserva directa por WhatsApp</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section dark-section" id="galeria">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-tag">Galería visual</span>
-          <h2>Conoce algunas de nuestras rutas y productos</h2>
-        </div>
-        <div class="masonry">
-          <figure class="masonry-item reveal"><img src="conoce_antioquia.jpeg" alt="Conoce Antioquia desde Granada" /></figure>
-          <figure class="masonry-item reveal delay-1"><img src="ruta_fe_collage.jpeg" alt="Ruta de la Fe collage" /></figure>
-          <figure class="masonry-item reveal delay-2"><img src="articulos_religiosos.jpeg" alt="Artículos religiosos" /></figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container spotlight-grid">
-        <article class="glow-card spotlight-card reveal">
-          <img src="articulos_religiosos.jpeg" alt="Artículos religiosos" />
-          <div class="spotlight-copy">
-            <span class="section-tag">Tienda complementaria</span>
-            <h3>Artículos religiosos</h3>
-            <p>También puedes usar la misma página para promocionar artículos religiosos, estatuillas y rosarios.</p>
-          </div>
-        </article>
-        <article class="glow-card spotlight-card reveal delay-1">
-          <img src="ruta_milagro.jpeg" alt="Milagro Eucarístico" />
-          <div class="spotlight-copy">
-            <span class="section-tag">Ruta emblemática</span>
-            <h3>Ruta Milagro Eucarístico</h3>
-            <p>Una de las experiencias más representativas para clientes que buscan fe, historia y cultura en Tumaco.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="reserva">
-      <div class="container booking-wrap">
-        <div class="booking-copy reveal">
-          <span class="section-tag">Reserva ahora</span>
-          <h2>Compra y asegura tu experiencia</h2>
-          <p>
-            Escoge el plan, selecciona la fecha desde el calendario, indica cuántas personas viajan y deja tus datos.
-            La solicitud quedará guardada automáticamente en el CRM interno.
-          </p>
-          <div class="contact-card glow-card" id="contacto">
-            <h3>Contacto directo</h3>
-            <p>WhatsApp: 302 100 2442</p>
-            <p>Email: info@tumatours.com</p>
-            <p>Dirección: Barrio Miramar diagonal a San Remo, primer piso, Tumaco - Nariño</p>
-          </div>
-        </div>
-
-        <div class="booking-form-card glow-card reveal delay-1">
-          <form id="bookingForm" class="booking-form">
-            <div class="field-grid">
-              <label>
-                Nombre completo
-                <input type="text" name="cliente" required placeholder="Tu nombre" />
-              </label>
-              <label>
-                Documento / cédula
-                <input type="text" name="documento" placeholder="Número de documento" />
-              </label>
-            </div>
-
-            <div class="field-grid">
-              <label>
-                Teléfono / WhatsApp
-                <input type="tel" name="telefono" required placeholder="3001234567" />
-              </label>
-              <label>
-                Correo electrónico
-                <input type="email" name="email" required placeholder="correo@ejemplo.com" />
-              </label>
-            </div>
-
-            <div class="field-grid">
-              <label>
-                Plan
-                <select name="tour" id="tourSelect" required>
-                  <option value="">Selecciona un plan</option>
-                  <option value="Ruta del Milagro Eucarístico">Ruta del Milagro Eucarístico</option>
-                  <option value="Ruta de la Fe Colomboecuatoriana">Ruta de la Fe Colomboecuatoriana</option>
-                  <option value="Rutas Internacionales">Rutas Internacionales</option>
-                  <option value="Artículos religiosos">Artículos religiosos</option>
-                </select>
-              </label>
-              <label>
-                Fecha de viaje / pedido
-                <input type="date" name="fecha" id="fechaInput" required />
-              </label>
-            </div>
-
-            <div class="field-grid">
-              <label>
-                Número de viajeros / unidades
-                <input type="number" name="personas" min="1" value="1" required />
-              </label>
-              <label>
-                Ciudad de origen
-                <input type="text" name="ciudad" placeholder="Tumaco / Pasto / otra" />
-              </label>
-            </div>
-
-            <div class="field-grid">
-              <label>
-                Método de pago
-                <select name="pago" required>
-                  <option value="">Selecciona</option>
-                  <option value="Bancolombia">Bancolombia</option>
-                  <option value="Nequi">Nequi</option>
-                  <option value="Transferencia">Transferencia</option>
-                  <option value="Por confirmar">Por confirmar</option>
-                </select>
-              </label>
-              <label>
-                Canal preferido de contacto
-                <select name="canal">
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Llamada">Llamada</option>
-                  <option value="Correo">Correo</option>
-                </select>
-              </label>
-            </div>
-
-            <label>
-              Mensaje adicional
-              <textarea name="mensaje" rows="4" placeholder="Cuéntanos cualquier detalle importante"></textarea>
-            </label>
-
-            <div class="price-preview" id="pricePreview">Valor estimado: <strong>Selecciona un plan</strong></div>
-            <button type="submit" class="btn btn-primary w-full">Confirmar reserva</button>
-            <p class="form-note">La reserva se registra en el CRM y luego puedes atender al cliente desde el panel interno.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cta-strip">
-      <div class="container cta-inner reveal">
-        <div>
-          <span class="section-tag">Tuma Tour</span>
-          <h2>Tu próxima experiencia comienza aquí</h2>
-        </div>
-        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/573021002442?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20planes%20de%20Tuma%20Tour">Hablar por WhatsApp</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div><img src="logo.jpeg" alt="Logo Tuma Tour" class="footer-logo" /></div>
-      <div>
-        <h4>Contacto</h4>
-        <p>302 100 2442</p>
-        <p>info@tumatours.com</p>
-      </div>
-      <div>
-        <h4>Ubicación</h4>
-        <p>Barrio Miramar diagonal a San Remo, primer piso</p>
-        <p>Tumaco - Nariño</p>
-      </div>
-    </div>
-  </footer>
-
-  <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
